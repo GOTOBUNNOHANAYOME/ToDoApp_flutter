@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SideMenuBar{
 
-  static Drawer getSideMenuBar(){
+  static Drawer getSideMenuBar(BuildContext context){
     return Drawer(
         child: ListView(
           children: [
             ListTile(
-              title: const Text('メニュー1'),
+              title: const Text('ホーム'),
               onTap: () {
-                
+                GoRouter.of(context).goNamed('home');
               },
             ),
             ListTile(

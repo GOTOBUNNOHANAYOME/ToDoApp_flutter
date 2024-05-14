@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pracriver/layouts/SideMenuBar.dart';
 import 'package:pracriver/layouts/TodoAppBar.dart';
+import 'package:go_router/go_router.dart';
 
 class TodoAddPage extends StatefulWidget {
   const TodoAddPage({super.key});
@@ -16,7 +17,7 @@ class _TodoAddPageState extends State<TodoAddPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TodoAppBar.getAppBar(),
-      drawer: SideMenuBar.getSideMenuBar(),
+      drawer: SideMenuBar.getSideMenuBar(context),
       body: Container(
         padding: EdgeInsets.all(64),
         child: Column(
@@ -38,7 +39,8 @@ class _TodoAddPageState extends State<TodoAddPage> {
                   backgroundColor: Colors.orange
                 ),
                 onPressed: (){
-                  Navigator.of(context).pop(_text);
+                  context.go('/');
+                  // Navigator.of(context).pop(_text);
                 },
                 child: Text('リスト追加', style: TextStyle(color: Colors.white),),
               )
