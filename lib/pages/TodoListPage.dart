@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pracriver/layouts/SideMenuBar.dart';
 import 'package:pracriver/layouts/TodoAppBar.dart';
 import 'package:pracriver/pages/TodoAddPage.dart';
@@ -19,7 +20,7 @@ class _TodoListPageState extends State<TodoListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TodoAppBar.getAppBar(),
-      drawer: SideMenuBar.getSideMenuBar(),
+      drawer: SideMenuBar.getSideMenuBar(context),
       body: Center(
         child: ListView.builder(
           itemCount: todoList.length,
@@ -43,13 +44,13 @@ class _TodoListPageState extends State<TodoListPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           //ルーティング処理になってる
-          final newListText = await Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) {
-              // class(ページ)を返す
-              return TodoAddPage();
-            }),
-          );
-
+          // final newListText = await Navigator.of(context).push(
+          //   MaterialPageRoute(builder: (context) {
+          //     // class(ページ)を返す
+          //     return TodoAddPage();
+          //   }),
+          // );
+          final newListText = await context.pushNamed<String>('todo.create');
           // キャンセルした場合は newListText が null となるので注意
           if (newListText != null) {
 
